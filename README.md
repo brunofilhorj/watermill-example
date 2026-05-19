@@ -17,13 +17,14 @@ O objetivo é entender na prática:
 # 🧠 Arquitetura do projeto
 
 Estrutura:
+```
 internal/
 ├── domain/ # entidades e contratos
 ├── usecase/ # regras de negócio
 ├── messaging/ # handlers + router Watermill
 ├── infra/
 │ └── bus/ # implementação GoChannel
-
+```
 ---
 
 # ⚙️ Stack
@@ -50,11 +51,12 @@ type OrderCreated struct {
 	UserID  string
 	Amount  float64
 }
+```
 
 ## 🚀 Como executar
-
+```bash
 go run . -count=4
-
+```
 Parâmetro:
 
 count: número de mensagens publicadas
