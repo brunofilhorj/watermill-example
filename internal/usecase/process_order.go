@@ -3,8 +3,8 @@ package usecase
 import (
 	"log"
 
-	"github.com/brunofilhorj/watermill-kafka-example/internal/domain"
-	"github.com/brunofilhorj/watermill-kafka-example/internal/errors"
+	"github.com/brunofilhorj/watermill-example/internal/domain"
+	"github.com/brunofilhorj/watermill-example/internal/errors"
 )
 
 func ProcessOrder(order domain.Order) error {

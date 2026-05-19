@@ -1,4 +1,4 @@
-module github.com/brunofilhorj/watermill-kafka-example
+module github.com/brunofilhorj/watermill-example
 
 go 1.25.0
 

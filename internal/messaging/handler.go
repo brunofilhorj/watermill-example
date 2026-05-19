@@ -6,14 +6,14 @@ import (
 
 	"github.com/ThreeDotsLabs/watermill/message"
 
-	"github.com/brunofilhorj/watermill-kafka-example/internal/domain"
-	"github.com/brunofilhorj/watermill-kafka-example/internal/usecase"
+	"github.com/brunofilhorj/watermill-example/internal/domain"
+	"github.com/brunofilhorj/watermill-example/internal/usecase"
 )
 
 func OrderHandler(msg *message.Message) error {
 	log.Println("🔥 CHEGOU NO HANDLER")
 	correlationID := msg.Metadata.Get("correlation_id")
-	log.Printf("handler started | correlation_id=%s", correlationID)
+	log.Printf("handler started | msg_id=%s correlation_id=%s", msg.UUID, correlationID)
 
 	var order domain.Order
 

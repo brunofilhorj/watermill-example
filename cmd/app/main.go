@@ -12,9 +12,9 @@ import (
 	"github.com/ThreeDotsLabs/watermill"
 	"github.com/ThreeDotsLabs/watermill/message"
 
-	"github.com/brunofilhorj/watermill-kafka-example/internal/domain"
-	"github.com/brunofilhorj/watermill-kafka-example/internal/infra/bus"
-	"github.com/brunofilhorj/watermill-kafka-example/internal/messaging"
+	"github.com/brunofilhorj/watermill-example/internal/domain"
+	"github.com/brunofilhorj/watermill-example/internal/infra/bus"
+	"github.com/brunofilhorj/watermill-example/internal/messaging"
 )
 
 type OrderCreated struct {

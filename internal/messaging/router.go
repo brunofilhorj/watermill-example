@@ -10,8 +10,8 @@ import (
 	"github.com/ThreeDotsLabs/watermill/message"
 	"github.com/ThreeDotsLabs/watermill/message/router/middleware"
 
-	"github.com/brunofilhorj/watermill-kafka-example/internal/domain"
-	appErrors "github.com/brunofilhorj/watermill-kafka-example/internal/errors"
+	"github.com/brunofilhorj/watermill-example/internal/domain"
+	appErrors "github.com/brunofilhorj/watermill-example/internal/errors"
 )
 
 func CustomRecoverer() message.HandlerMiddleware {
@@ -57,6 +57,19 @@ func PoisonMiddleware(pub message.Publisher) message.HandlerMiddleware {
 	}
 }
 
+func EnsureCorrelationID() message.HandlerMiddleware {
+	return func(h message.HandlerFunc) message.HandlerFunc {
+		return func(msg *message.Message) ([]*message.Message, error) {
+
+			if msg.Metadata.Get("correlation_id") == "" {
+				msg.Metadata.Set("correlation_id", watermill.NewUUID())
+			}
+
+			return h(msg)
+		}
+	}
+}
+
 func NewRouter(bus domain.Bus) (*message.Router, error) {
 	logger := watermill.NewStdLogger(false, false)
 
@@ -67,6 +80,7 @@ func NewRouter(bus domain.Bus) (*message.Router, error) {
 
 	router.AddMiddleware(
 		CustomRecoverer(),
+		EnsureCorrelationID(),
 		middleware.CorrelationID,
 		middleware.Retry{
 			MaxRetries:      2,
